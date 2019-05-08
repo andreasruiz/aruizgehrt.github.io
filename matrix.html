@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <head>
+        
+        <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+                <meta name="description" content="This matrix calculator generates a Twelve-Tone Matrix, for analysis and composition of music in the style of Twelve-Tone serialism. (Created as a project for MUS 502B - Post Tonal Theory)">
+                    <meta name="author" content="Andreas Ruiz-Gehrt">
+                        
+                        <title>Twelve-Tone Matrix Generator</title>
+                        
+                        <!-- Bootstrap core CSS -->
+                        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+                            
+                            <!-- Custom fonts -->
+                            <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+                                <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
+                                    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+                                        
+                                        <!-- Custom Stylesheet for this page -->
+                                        <link href="css/matrix.min.css" rel="stylesheet">
+                                            
+    </head>
+    
+    <body id="page-top">
+        
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand js-scroll-trigger" href="index.html">Home</a>
+                <a class="navbar-brand js-scroll-trigger" href="#page-top">Twelve-Tone Matrix Generator</a>
+        </nav>
+        
+        <!-- Header -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-10 col-xl-9 mx-auto">
+                        <div class="card card-signin flex-row my-5">
+                            <div class="card-body">
+                                <h5 class="card-title text-center" id="title-main">Matrix Generator <br /> MUS 502B, Spring 2019</h5>
+                                <table id="table" class="table table-bordered hover-highlight"></table>
+
+                                <hr />
+                                
+                                <div class="table-input">
+                                    <div class="text-center">
+                                        <text class="card-title">Input:</text>
+                                        <br />
+                                        <button type="button" class="btn btn-primary btn-sm" id="input-0" onclick="pitchBtn(0)">0</button>
+                                        <button type="button" class="btn btn-primary btn-sm" id="input-1" onclick="pitchBtn(1)">1</button>
+                                        <button type="button" class="btn btn-primary bt-sm" id="input-2" onclick="pitchBtn(2)">2</button>
+                                        <button type="button" class="btn btn-primary bt-sm" id="input-3" onclick="pitchBtn(3)">3</button>
+                                        <button type="button" class="btn btn-primary bt-sm" id="input-4" onclick="pitchBtn(4)">4</button>
+                                        <button type="button" class="btn btn-primary bt-sm" id="input-5" onclick="pitchBtn(5)">5</button>
+                                        <button type="button" class="btn btn-primary bt-sm" id="input-6" onclick="pitchBtn(6)">6</button>
+                                        <button type="button" class="btn btn-primary bt-sm" id="input-7" onclick="pitchBtn(7)">7</button>
+                                        <button type="button" class="btn btn-primary bt-sm" id="input-8" onclick="pitchBtn(8)">8</button>
+                                        <button type="button" class="btn btn-primary bt-sm" id="input-9" onclick="pitchBtn(9)">9</button>
+                                        <button type="button" class="btn btn-primary bt-sm" id="input-10" onclick="pitchBtn(10)">10</button>
+                                        <button type="button" class="btn btn-primary bt-sm" id="input-11" onclick="pitchBtn(11)">11</button>
+                                        <br/> <br/>
+                                        <button type="button" class="btn btn-primary bt-lg" id="del-pitch-btn" onclick="delPitch()"><i class="fa fa-chevron-left"></i> Del</button>
+                                    </div>
+                                </div>
+                                
+                                <br />
+                                
+                                <div class="text-center">
+                                    <text class="card-title">Table Format:</text>
+                                    <br />
+                                    <div class="btn-group" role="group" aria-label="Table Format Options">
+                                        <button type="button" class="btn btn-primary" id="state-btn-integers" onclick="stateChange('integers')" disabled>Integers</button>
+                                        <button type="button" class="btn btn-primary" id="state-btn-sharps" onclick="stateChange('sharps')">Sharps</button>
+                                        <button type="button" class="btn btn-primary" id="state-btn-flats" onclick="stateChange('flats')">Flats</button>
+                                    </div>
+                                    <br/> <br/>
+                                    <button type="button" class="btn btn-primary bt-lg" id="fixed-do-btn" onclick="fixedDoConvert()">Convert to Fixed-Do</button>
+                                    <button type="button" class="btn btn-primary bt-lg" id="fixed-do-btn-undo" onclick="fixedDoConvertUndo()" hidden>Undo</button>
+                                </div>
+                                <br />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <!-- Footer -->
+        <footer class="bg-black small text-center text-white-50">
+            <div class="container">
+                Copyright &copy; Andreas Ruiz-Gehrt 2019
+            </div>
+        </footer>
+        
+        <!-- Bootstrap core JavaScript -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        
+        <!-- Plugin JavaScript -->
+        <script src="js/jquery-easing/jquery.easing.js"></script>
+        
+        <!-- Custom script for page layout -->
+        <script src="js/grayscale.js"></script>
+        
+        <!-- Custom script for application (matrix generator) -->
+        <script src="js/matrix.js"></script>
+        
+    </body>
+    
+</html>
+
